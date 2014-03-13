@@ -1,0 +1,19 @@
+@(stations: Traversable[com.typesafe.training.scalatrain.Station])
+
+@main("Search for Trips") {
+    <form action="@routes.Application.searchResults" method="get">
+        <label for="from">From Station: </label>
+        <select name="from">
+            @for(station <- stations) {
+                <option>@station.name</option>
+            }
+        </select><br/>
+        <label for="to">To Station: </label>
+        <select name="to">
+            @for(station <- stations) {
+                <option>@station.name</option>
+            }
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+}
