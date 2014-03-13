@@ -1,0 +1,16 @@
+@(station: String, hopsOption: Option[Traversable[com.typesafe.training.scalatrain.Hop]])
+
+@main("Trips leaving " + station) {
+    @hopsOption match {
+    	case Some(hops) => {
+			<ul>
+       	        @for(hop <- hops) {
+		            <li>to @hop.to.name at @hop.departureTime arriving @hop.arrivalTime</li>
+		        }
+		    </ul>
+	   	} 
+       	case None => {
+     	    <p>No trips leaving this station.</p>
+	   	} 
+   	} 
+}

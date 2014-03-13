@@ -3,7 +3,7 @@
 @main("Stations") {
     <ul>
         @for(station <- stations) {
-            <li>@station.name</li>
+            <li>@station.name <a href="@routes.Application.trips(station.name)">see trips</a></li>
         }
     </ul>
 }

@@ -11,9 +11,17 @@ object Application extends Controller {
   def stations = Action {
     Ok(views.html.stations(planner.stations))
   }
+  
+  def trips(name: String) = Action {
+    val station = name
+    val hops = planner.hops.get(Station(name))
+    Ok(views.html.trips(station, hops))
+    
+  }
 
   def index = Action {
     Ok(views.html.index())
   }
+  
 
 }
