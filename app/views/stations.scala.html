@@ -1,0 +1,9 @@
+@(stations: Traversable[com.typesafe.training.scalatrain.Station])
+
+@main("Stations") {
+    <ul>
+        @for(station <- stations) {
+            <li>@station.name</li>
+        }
+    </ul>
+}
