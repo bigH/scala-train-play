@@ -1,4 +1,4 @@
-@(stations: Traversable[model.Station])
+@(tripQuery: Application.TripQuery, stations: Set[model.Station])
 
 @main("Search for Trips") {
     <form action="@routes.Application.searchResults" method="get">

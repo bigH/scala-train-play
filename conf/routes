@@ -5,7 +5,8 @@
 GET     /                           controllers.Application.index
 GET     /stations                   controllers.Application.stations
 GET 	/trips/:station				controllers.Application.trips(station: String)
-GET 	/search     				controllers.Application.search
+GET 	/search/     				controllers.Application.search
+POST 	/search/     				controllers.Application.search
 GET 	/searchResults			    controllers.Application.searchResults
 
 # Map static resources from the /public folder to the /assets URL path
