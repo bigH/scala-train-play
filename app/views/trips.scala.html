@@ -1,4 +1,4 @@
-@(station: String, hopsOption: Option[Traversable[com.typesafe.training.scalatrain.Hop]])
+@(station: String, hopsOption: Option[Traversable[model.Hop]])
 
 @main("Trips leaving " + station) {
     @hopsOption match {

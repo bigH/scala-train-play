@@ -1,9 +1,8 @@
 package controllers
 
+import model._
 import play.api._
 import play.api.mvc._
-import com.typesafe.training.scalatrain.Station
-import com.typesafe.training.scalatrain.TestData
 import play.api.data.Form
 
 object Application extends Controller {
@@ -14,7 +13,6 @@ object Application extends Controller {
   }
 
   def searchResults = Action {
-    val data = Form.
     val results = ""
     Ok(views.html.searchResults(results))
   }
