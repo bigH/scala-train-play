@@ -2,7 +2,7 @@
  * Copyright © 2012 Typesafe, Inc. All rights reserved.
  */
 
-package com.typesafe.training.scalatrain
+package model
 
 import org.scalatest.{ Matchers, WordSpec }
 

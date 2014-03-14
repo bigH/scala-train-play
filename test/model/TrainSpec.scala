@@ -2,7 +2,7 @@
  * Copyright © 2012 Typesafe, Inc. All rights reserved.
  */
 
-package com.typesafe.training.scalatrain
+package model
 
 import TestData._
 import java.lang.{ IllegalArgumentException => IAE }
@@ -12,16 +12,16 @@ class TrainSpec extends WordSpec with Matchers {
 
   "Creating a Train" should {
     "throw an IllegalArgumentException for a schedule with 0 or 1 elements" in {
-      evaluating(Train(TrainInfo.InterCityExpress(724), Vector())) should produce[IAE]
-      evaluating(Train(TrainInfo.InterCityExpress(724), Vector(ice724MunichTime -> munich))) should produce[IAE]
+      an [IAE] should be thrownBy { Train(TrainInfo.InterCityExpress(724), Vector()) }
+      an [IAE] should be thrownBy { Train(TrainInfo.InterCityExpress(724), Vector(ice724MunichTime -> munich)) }
     }
     "throw an IllegalArgumentException for a schedule not strictly increasing in time" in {
-      evaluating(
+      an [IAE] should be thrownBy {
         Train(
           TrainInfo.InterCityExpress(724),
           Vector(ice724MunichTime -> munich, ice724MunichTime -> nuremberg)
         )
-      ) should produce[IAE]
+      }
     }
   }
 
