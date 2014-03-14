@@ -2,7 +2,7 @@
  * Copyright © 2012 Typesafe, Inc. All rights reserved.
  */
 
-package com.typesafe.training.scalatrain
+package model
 
 import java.lang.{ IllegalArgumentException => IAE }
 import org.scalatest.{ Matchers, WordSpec }
@@ -28,12 +28,12 @@ class TimeSpec extends WordSpec with Matchers {
 
   "Creating a Time" should {
     "throw an IllegalArgumentException for hours not within 0 and 23" in {
-      evaluating(Time(-1)) should produce[IAE]
-      evaluating(Time(24)) should produce[IAE]
+      an [IAE] should be thrownBy { Time(-1) }
+      an [IAE] should be thrownBy { Time(24) }
     }
     "throw an IllegalArgumentException for minutes not within 0 and 59" in {
-      evaluating(Time(minutes = -1)) should produce[IAE]
-      evaluating(Time(minutes = 60)) should produce[IAE]
+      an [IAE] should be thrownBy { Time(minutes = -1) }
+      an [IAE] should be thrownBy { Time(minutes = 60) }
     }
   }
 

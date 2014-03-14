@@ -2,7 +2,7 @@
  * Copyright © 2012 Typesafe, Inc. All rights reserved.
  */
 
-package com.typesafe.training.scalatrain
+package model
 
 import TestData._
 import java.lang.{ IllegalArgumentException => IAE }
@@ -12,10 +12,10 @@ class HopSpec extends WordSpec with Matchers {
 
   "Creating a Hop" should {
     "throw an IllegalArgumentException for equal from and to" in {
-      evaluating(Hop(munich, munich, ice724)) should produce[IAE]
+      an [IAE] should be thrownBy { Hop(munich, munich, ice724) }
     }
     "throw an IllegalArgumentException for from and to not back-to-back stations of train" in {
-      evaluating(Hop(munich, cologne, ice724)) should produce[IAE]
+      an [IAE] should be thrownBy { Hop(munich, cologne, ice724) }
     }
   }
 

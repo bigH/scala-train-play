@@ -2,7 +2,7 @@
  * Copyright © 2012 Typesafe, Inc. All rights reserved.
  */
 
-package com.typesafe.training.scalatrain
+package model
 
 import TestData._
 import java.lang.{ IllegalArgumentException => IAE }
@@ -54,7 +54,7 @@ class JourneyPlannerSpec extends WordSpec with Matchers {
 
   "Calling connections" should {
     "throw an IllegalArgumentException for equal from and to" in {
-      evaluating(planner.connections(munich, munich, Time())) should produce[IAE]
+      an [IAE] should be thrownBy { planner.connections(munich, munich, Time()) }
     }
     "return the correct connections" in {
       planner.connections(munich, frankfurt, Time()) shouldEqual Set(

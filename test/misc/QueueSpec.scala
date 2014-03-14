@@ -35,7 +35,7 @@ class QueueSpec extends WordSpec with Matchers {
 
   "Calling dequeue" should {
     "throw an UnsupportedOperationException for an empty queue" in {
-      evaluating(Queue().dequeue) should produce[UnsupportedOperationException]
+      an [UnsupportedOperationException] should be thrownBy { Queue().dequeue }
     }
     "return the first element and a new Queue without the dequeued element" in {
       Queue(1, 2, 3).dequeue shouldEqual (1, Queue(2, 3))
