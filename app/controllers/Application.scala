@@ -17,19 +17,26 @@ object Application extends Controller {
       "from" -> text
     )(TripQuery.apply)(TripQuery.unapply)
   )
+
+  def searchLoad = Action{
+      Ok(views.html.search(form, planner.sortedStations))
+
+
+  }
   
   def search = Action {
     implicit request =>
     form.bindFromRequest.fold(
-      BadRequest(views.html.search(_, planner.stations)),
-      Redirect(routes.Application.searchResults(_))
+      e=>BadRequest(views.html.search(e, planner.sortedStations)),
+      i=>Redirect(routes.Application.searchResults(i.from, i.to))
+
     )
-  
-    Ok(views.html.search(planner.stations))
   }
 
-  def searchResults = Action {
- val results = ""
+  def searchResults(from: String, to: String) = Action {
+    //
+    //val time = Option(Time(0,0))
+    val results = planner.connections(Station(from), Station(to), None)
     Ok(views.html.searchResults(results))
   }
 

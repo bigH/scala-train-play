@@ -1,19 +1,11 @@
-@(tripQuery: Application.TripQuery, stations: Set[model.Station])
+@(tripQuery: Form[Application.TripQuery], stations: Seq[(String, String)])
 
 @main("Search for Trips") {
-    <form action="@routes.Application.searchResults" method="get">
-        <label for="from">From Station: </label>
-        <select name="from">
-            @for(station <- stations) {
-                <option>@station.name</option>
-            }
-        </select><br/>
-        <label for="to">To Station: </label>
-        <select name="to">
-            @for(station <- stations) {
-                <option>@station.name</option>
-            }
-        </select>
-        <button type="submit">Submit</button>
-    </form>
+
+    @helper.form(action =
+        routes.Application.search()) {
+        @helper.select(tripQuery("from"), stations)
+        @helper.select(tripQuery("to"), stations)
+        <input type="submit"/>
+    }
 }

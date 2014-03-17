@@ -4,13 +4,17 @@
 
 package model
 
-import scala.collection.immutable.Seq
 
 class JourneyPlanner(trains: Set[Train]) {
 
   val stations: Set[Station] =
     // Could also be expressed in short notation: trains flatMap (_.stations)
     trains flatMap (train => train.stations)
+
+  val sortedStations: Seq[(String,String)] = {
+    val tmp =stations.map(s => s.name).toSeq.sorted
+    tmp zip tmp
+  }
 
   val hops: Map[Station, Set[Hop]] = {
     val hops = for {
@@ -39,7 +43,7 @@ class JourneyPlanner(trains: Set[Train]) {
       }
     )
 
-  def connections(from: Station, to: Station, departureTime: Time): Set[Seq[Hop]] = {
+  def connections(from: Station, to: Station, departureTime: Option[Time]): Set[Seq[Hop]] = {
     require(from != to, "from and to must not be equal!")
     def connections(soFar: Vector[Hop]): Set[Vector[Hop]] = {
       if (soFar.last.to == to)
@@ -52,7 +56,7 @@ class JourneyPlanner(trains: Set[Train]) {
         nextHops flatMap (hop => connections(soFar :+ hop))
       }
     }
-    val nextHops = hops.getOrElse(from, Set()) filter (_.departureTime >= departureTime)
+    val nextHops = hops.getOrElse(from, Set()) filter (_.departureTime >= departureTime.getOrElse(Time(0,0)))
     nextHops flatMap (hop => connections(Vector(hop)))
   }
 }
