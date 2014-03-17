@@ -6,6 +6,8 @@
         routes.Application.search()) {
         @helper.select(tripQuery("from"), stations)
         @helper.select(tripQuery("to"), stations)
+        @helper.inputText(tripQuery("hours"))
+        @helper.inputText(tripQuery("minutes"))
         <input type="submit"/>
     }
 }

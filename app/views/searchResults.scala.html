@@ -1,5 +1,13 @@
 @(results: Set[Seq[model.Hop]])
 
 @main("Results for : ") {
-   @results
+
+@for(trip <- results) {
+   @trip.head.departureTime @trip.head.from.name
+   @for(hop <- trip){
+      Arrives At: @hop.to.name  @hop.arrivalTime
+   }
+   <br/>
+}
+
 }
