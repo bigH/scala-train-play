@@ -44,7 +44,6 @@ class JourneyPlanner(trains: Set[Train]) {
     )
 
   def connections(from: Station, to: Station, departureTime: Option[Time]): Set[Seq[Hop]] = {
-    require(from != to, "from and to must not be equal!")
     def connections(soFar: Vector[Hop]): Set[Vector[Hop]] = {
       if (soFar.last.to == to)
         Set(soFar)

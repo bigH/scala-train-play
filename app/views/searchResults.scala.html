@@ -1,13 +1,32 @@
-@(results: Set[Seq[model.Hop]])
+@(tripQuery: Form[Application.TripQuery],
+        stations: Seq[(String, String)],
+        results: Set[Seq[model.Hop]],
+        history: Seq[(Long, Application.TripQuery)],
+        query: Application.TripQuery)
 
-@main("Results for : ") {
+@main(s"Search Results: $query") {
 
-@for(trip <- results) {
-   @trip.head.departureTime @trip.head.from.name
-   @for(hop <- trip){
-      Arrives At: @hop.to.name  @hop.arrivalTime
-   }
-   <br/>
-}
+    <div style="height: 180px;">
+        @searchForm(tripQuery, stations)
+    </div>
+    <div>
+        @searchHistory(history)
+    </div>
+    <div>
+        @if(!results.isEmpty) {
+            <ul>
+            @for(trip <- results) {
+                <li>
+                @trip.head.from.name (@trip.head.departureTime)
+                @for(hop <- trip){
+                    --> @hop.to.name (@hop.arrivalTime)
+                }
+                </li>
+            }
+            </ul>
+        } else {
+            <div>No trips found.</div>
+        }
+    </div>
 
 }

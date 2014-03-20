@@ -1,13 +1,10 @@
-@(tripQuery: Form[Application.TripQuery], stations: Seq[(String, String)])
+@(tripQuery: Form[Application.TripQuery], stations: Seq[(String, String)], history: Seq[(Long, Application.TripQuery)])
 
 @main("Search for Trips") {
-
-    @helper.form(action =
-        routes.Application.search()) {
-        @helper.select(tripQuery("from"), stations)
-        @helper.select(tripQuery("to"), stations)
-        @helper.inputText(tripQuery("hours"))
-        @helper.inputText(tripQuery("minutes"))
-        <input type="submit"/>
-    }
+    <div>
+        @searchForm(tripQuery, stations)
+    </div>
+    <div>
+        @searchHistory(history)
+    </div>
 }

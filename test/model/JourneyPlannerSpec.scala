@@ -54,15 +54,15 @@ class JourneyPlannerSpec extends WordSpec with Matchers {
 
   "Calling connections" should {
     "throw an IllegalArgumentException for equal from and to" in {
-      an [IAE] should be thrownBy { planner.connections(munich, munich, Time()) }
+      an [IAE] should be thrownBy { planner.connections(munich, munich, None) }
     }
     "return the correct connections" in {
-      planner.connections(munich, frankfurt, Time()) shouldEqual Set(
+      planner.connections(munich, frankfurt, None) shouldEqual Set(
         Vector(Hop(munich, nuremberg, ice724), Hop(nuremberg, frankfurt, ice724)),
         Vector(Hop(munich, nuremberg, ice726), Hop(nuremberg, frankfurt, ice726)),
         Vector(Hop(munich, nuremberg, ice726), Hop(nuremberg, frankfurt, ice724))
       )
-      planner.connections(munich, frankfurt, Time(8)) shouldEqual Set(
+      planner.connections(munich, frankfurt, Some(Time(8))) shouldEqual Set(
         Vector(Hop(munich, nuremberg, ice724), Hop(nuremberg, frankfurt, ice724))
       )
     }

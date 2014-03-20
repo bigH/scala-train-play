@@ -1,0 +1,13 @@
+@(tripQuery: Form[Application.TripQuery], stations: Seq[(String, String)])
+
+@helper.form(action =
+        routes.Application.search()) {
+    <div style="clear: all;">
+        <div style="float: left; padding: 30px;">@helper.select(tripQuery("from"), stations)</div>
+        <div style="float: left; padding: 30px;">@helper.select(tripQuery("to"), stations)</div>
+        <div style="float: left; padding: 30px;">@helper.inputText(tripQuery("hours"))</div>
+        <div style="float: left; padding: 30px;">@helper.inputText(tripQuery("minutes"))</div>
+        <div style="float: right; padding: 30px;"><input type="submit"/></div>
+    </div>
+    <div style="clear: all;"></div>
+}

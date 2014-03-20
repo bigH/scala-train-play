@@ -1,0 +1,13 @@
+@(history: Seq[(Long, Application.TripQuery)])
+
+<ul>
+    @for(tuple <- history;
+        (_, query) = tuple) {
+        <li>
+            <a href="@routes.Application.searchResults(query.from, query.to, query.hours, query.minutes)">
+                @query.toString
+            </a>
+        </li>
+    }
+</ul>
+

@@ -1,0 +1,14 @@
+<ehcache>
+
+    <defaultCache
+            maxBytesLocalHeap="16000"
+            eternal="false"
+            timeToIdleSeconds="10"
+            timeToLiveSeconds="120"
+            overflowToDisk="false"
+            diskPersistent="false"
+            memoryStoreEvictionPolicy="LFU"
+            />
+
+</ehcache>
+
